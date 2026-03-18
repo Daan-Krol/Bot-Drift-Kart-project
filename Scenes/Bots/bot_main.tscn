@@ -1,0 +1,260 @@
+[gd_scene load_steps=20 format=3 uid="uid://db31yf3kac2ty"]
+
+[ext_resource type="PackedScene" uid="uid://cvv45hxcfwfpn" path="res://Scenes/Bots/BotCar.tscn" id="2_cj7g5"]
+[ext_resource type="Texture2D" uid="uid://bdt7llmu75bl7" path="res://Assets/Textures/HQ Textures/tile137.png" id="2_d68b7"]
+[ext_resource type="PackedScene" uid="uid://2a7oas7x57wo" path="res://Scenes/Bots/Waypoint.tscn" id="3_26yb5"]
+[ext_resource type="Texture2D" uid="uid://c1kex5pxqepwt" path="res://Assets/Textures/HQ Textures/tile138.png" id="3_uamjs"]
+[ext_resource type="Texture2D" uid="uid://deuwkmydj1k1a" path="res://Assets/Backgrounds/eso1426c.jpg" id="4_4j0v6"]
+[ext_resource type="PackedScene" uid="uid://crp5o4347qrle" path="res://Scenes/Car/Car.tscn" id="5_oinne"]
+[ext_resource type="Texture2D" uid="uid://dllms5asb10f0" path="res://Assets/Textures/HQ Textures/tile135.png" id="6_6cedb"]
+[ext_resource type="Script" uid="uid://bbryx0ja3na7j" path="res://Scenes/Tracking/RaceManager.gd" id="6_nicx6"]
+[ext_resource type="PackedScene" uid="uid://cijkvicxgtdlt" path="res://Scenes/Tracking/Finishline.tscn" id="7_rul7m"]
+
+[sub_resource type="Curve3D" id="Curve3D_5t3ar"]
+_data = {
+"points": PackedVector3Array(10.2503, 0, 35.3635, -10.2503, 0, -35.3635, -63.3329, 0, 93.4052, 36.7848, 0, 22.3705, -36.7848, 0, -22.3705, -71.6741, 0, 9.53063, 8.98255, 0, 17.7434, -8.98255, 0, -17.7434, -136.15, 0, -22.9532, -18.9891, 0, 6.70139, 18.9891, 0, -6.70139, -102.858, 0, -74.8859, -25.571, 0, -17.9975, 25.571, 0, 17.9975, -33.8711, 0, -71.3902, -10.5456, 0, -16.807, 10.5456, 0, 16.807, 32.3673, 0, 8.73112, -45.4818, 0, -67.0606, 45.4818, 0, 67.0606, 154.401, 0, 5.4988, 59.9341, 0, 34.3736, -59.9341, 0, -34.3736, 89.9815, 0, 80.4753, 72.0821, 0, 75.1782, -72.0821, 0, -75.1782, -56.9999, 0, 105.762),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jli3"]
+albedo_texture = ExtResource("2_d68b7")
+metallic = 1.0
+uv1_scale = Vector3(-0.5, -0.5, -0.5)
+uv1_offset = Vector3(100, 0, 100)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+uv1_world_triplanar = true
+uv2_triplanar_sharpness = 144.89
+uv2_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6ain"]
+albedo_texture = ExtResource("3_uamjs")
+metallic = 1.0
+uv1_scale = Vector3(-0.5, -0.5, -0.5)
+uv1_triplanar = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ivrs3"]
+panorama = ExtResource("4_4j0v6")
+filter = false
+
+[sub_resource type="Sky" id="Sky_a1mac"]
+sky_material = SubResource("PanoramaSkyMaterial_ivrs3")
+
+[sub_resource type="Environment" id="Environment_u5wkg"]
+background_mode = 2
+background_energy_multiplier = 0.2
+sky = SubResource("Sky_a1mac")
+glow_enabled = true
+fog_enabled = true
+fog_light_energy = 0.0
+fog_density = 0.0119
+fog_sky_affect = 0.683
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv7in"]
+albedo_texture = ExtResource("6_6cedb")
+metallic = 1.0
+uv1_scale = Vector3(-0.5, -0.5, -2.24)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_773k8"]
+shading_mode = 0
+albedo_color = Color(0.294118, 0.294118, 0.294118, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_80888"]
+material = SubResource("StandardMaterial3D_773k8")
+size = Vector2(21.05, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqs1d"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.45098)
+
+[node name="BotMain" type="Node3D"]
+
+[node name="BotCar" parent="." instance=ExtResource("2_cj7g5")]
+transform = Transform3D(0.806052, -1.04355e-08, 0.591844, 7.66352e-09, 1, 7.19501e-09, -0.591844, -1.26395e-09, 0.806052, 8.42367, 5.36163, -9.78109)
+Name = "Riddick"
+
+[node name="BotCar2" parent="." instance=ExtResource("2_cj7g5")]
+transform = Transform3D(0.806052, -1.04355e-08, 0.591844, 7.66352e-09, 1, 7.19501e-09, -0.591844, -1.26395e-09, 0.806052, 8.76936, 5.36163, -13.7514)
+Name = "Thirty six"
+
+[node name="BotCar3" parent="." instance=ExtResource("2_cj7g5")]
+transform = Transform3D(0.806052, -1.04355e-08, 0.591844, 7.66352e-09, 1, 7.19501e-09, -0.591844, -1.26395e-09, 0.806052, 3.85003, 5.36163, -15.1757)
+Name = "Rebel Moon"
+
+[node name="BotCar4" parent="." instance=ExtResource("2_cj7g5")]
+transform = Transform3D(0.806052, -1.04355e-08, 0.591844, 7.66352e-09, 1, 7.19501e-09, -0.591844, -1.26395e-09, 0.806052, 4.70526, 5.36163, -19.3672)
+Name = "Arjan De MT"
+
+[node name="BotCar5" parent="." instance=ExtResource("2_cj7g5")]
+transform = Transform3D(0.806052, -1.04355e-08, 0.591844, 7.66352e-09, 1, 7.19501e-09, -0.591844, -1.26395e-09, 0.806052, -0.409796, 5.36163, -20.5141)
+Name = "Vengeance"
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_5t3ar")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D"]
+use_collision = true
+collision_layer = 3
+polygon = PackedVector2Array(0, 2, 16.5, 2, 16.5, 0, 0, 0, 0, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 10.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = true
+smooth_faces = true
+material = SubResource("StandardMaterial3D_4jli3")
+
+[node name="Path3D2" type="Path3D" parent="."]
+curve = SubResource("Curve3D_5t3ar")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D2"]
+use_collision = true
+polygon = PackedVector2Array(-3, 3, 0, 2, 0, 0.893, 16.5, 0.893, 16.5, 1.967, 20, 3, 21.753, 3, 21.11, 0, -5.197, 0, -5, 3)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 10.0
+path_simplify_angle = 0.5
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = true
+smooth_faces = true
+material = SubResource("StandardMaterial3D_q6ain")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0697565, -0.863916, 0.498782, 0, 0.5, 0.866026, -0.997564, -0.0604109, 0.0348783, 0, 0, 0)
+light_color = Color(0.901961, 0.929412, 1, 1)
+light_energy = 3.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u5wkg")
+
+[node name="WaypointManager" type="Node3D" parent="."]
+
+[node name="Waypoint0" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.503563, 0, 0.863959, 0, 1, 0, -0.863959, 0, 0.503563, -43.9742, 2.97302, -67.206)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint1" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.255243, 0, 0.966877, 0, 1, 0, -0.966877, 0, -0.255243, -85.5347, 2.97302, -71.3483)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint2" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.841209, 0, 0.54071, 0, 1, 0, -0.54071, 0, -0.841209, -117.693, 2.97302, -54.8278)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint3" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.914515, 0, 0.404551, 0, 1, 0, -0.404551, 0, 0.914515, -126.293, 2.97302, -30.7076)
+DriftLevel = 1
+Dir = -1
+
+[node name="Waypoint4" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.387339, 0, -0.921937, 0, 1, 0, 0.921937, 0, -0.387339, -115.513, 1.88264, -17.8772)
+
+[node name="Waypoint5" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.660421, 0, -0.750895, 0, 1, 0, 0.750895, 0, -0.660421, -58.7929, 2.97302, 13.4324)
+DriftLevel = 2
+Dir = 1
+
+[node name="Waypoint6" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.995002, 0, -0.0998581, 0, 1, 0, 0.0998581, 0, -0.995002, -48.3468, 2.97302, 40.8018)
+
+[node name="Waypoint7" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.943749, 0, -0.330663, 0, 1, 0, 0.330663, 0, -0.943749, -54.7337, 2.97302, 82.1721)
+
+[node name="Waypoint8" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.507523, -2.04087e-08, 0.861638, 6.00068e-09, 1, 2.01514e-08, -0.861638, -5.05687e-09, 0.507523, -39.259, 2.97302, 109.305)
+DriftLevel = 3
+
+[node name="Waypoint9" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.741039, -9.08414e-09, 0.671462, 6.00068e-09, 1, 2.01514e-08, -0.671462, 1.89622e-08, -0.741039, 8.87761, 2.97302, 108.362)
+
+[node name="Waypoint10" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.582875, -1.28766e-08, 0.812562, 6.00068e-09, 1, 2.01514e-08, -0.812562, 1.66217e-08, -0.582875, 45.3087, 2.97302, 75.4784)
+DriftLevel = 2
+
+[node name="Waypoint11" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.275453, -2.10247e-08, 0.961315, 6.00068e-09, 1, 2.01514e-08, -0.961315, 2.17796e-10, 0.275453, 78.9613, 2.97302, 68.3614)
+
+[node name="Waypoint12" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.307905, -1.5674e-09, 0.951417, 8.05628e-09, 1, 4.25468e-09, -0.951417, 8.97492e-09, -0.307905, 144.381, 2.97302, 81.1591)
+DriftLevel = 2
+
+[node name="Waypoint13" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.753426, 2.06129e-08, -0.657533, -1.46138e-09, 1, 2.96744e-08, 0.657533, -2.13965e-08, 0.753426, 159.953, 2.97302, 67.9857)
+DriftLevel = 3
+
+[node name="Waypoint14" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.945314, -1.22451e-08, 0.326162, 6.00068e-09, 1, 2.01514e-08, -0.326162, -1.70922e-08, 0.945314, 160.327, 2.97302, 37.4888)
+DriftLevel = 3
+
+[node name="Waypoint15" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.659739, -1.91025e-08, 0.751494, 6.00068e-09, 1, 2.01514e-08, -0.751494, -8.78517e-09, 0.659739, 147.398, 2.97302, 13.2207)
+
+[node name="Waypoint16" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.156279, -1.8966e-08, 0.987713, 6.00068e-09, 1, 2.01514e-08, -0.987713, 9.07619e-09, -0.156279, 112.555, 2.97302, -11.5481)
+
+[node name="Waypoint17" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(-0.213729, -1.84032e-08, 0.976893, 6.00068e-09, 1, 2.01514e-08, -0.976893, 1.0169e-08, -0.213729, 55.1578, 2.97302, 10.6827)
+DriftLevel = 3
+
+[node name="Waypoint18" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.239161, -2.10017e-08, 0.97098, 6.00068e-09, 1, 2.01514e-08, -0.97098, 1.00713e-09, 0.239161, 36.1419, 2.97302, 15.1196)
+DriftLevel = 3
+
+[node name="Waypoint19" parent="WaypointManager" instance=ExtResource("3_26yb5")]
+transform = Transform3D(0.731758, -1.81255e-08, 0.681564, 6.00068e-09, 1, 2.01514e-08, -0.681564, -1.06561e-08, 0.731758, 21.5056, 2.97302, 7.31326)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 6.209, 0, -1, -2.71404e-07, 0, 8.822, 0)
+use_collision = true
+polygon = PackedVector2Array(-76.431, 86.6583, -95.43, 83.0436, -112.014, 76.4557, -130.399, 59.0852, -141.786, 38.6906, -141.254, 27.2327, -135.676, 15.1034, -114.937, 3.89747, -153.91, 20.073, -120.063, 81.525)
+material = SubResource("StandardMaterial3D_tv7in")
+
+[node name="Car" parent="." instance=ExtResource("5_oinne")]
+transform = Transform3D(0.80566, -1.04355e-08, 0.592379, 7.65874e-09, 1, 7.20009e-09, -0.592379, -1.26395e-09, 0.80566, 12.4372, 5.2122, -8.60701)
+Name = "Player (You)"
+
+[node name="Finishline" parent="." instance=ExtResource("7_rul7m")]
+
+[node name="Racemanager" type="Node3D" parent="."]
+script = ExtResource("6_nicx6")
+
+[node name="MiniMap" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MiniMap"]
+transform = Transform3D(0.791256, -0.611486, -2.67289e-08, 0, -4.37114e-08, 1, -0.611486, -0.791256, -3.45869e-08, -5.88201, 12, -27.6234)
+layers = 524288
+mesh = SubResource("QuadMesh_80888")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="MiniMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+layers = 524288
+use_collision = true
+collision_layer = 3
+polygon = PackedVector2Array(0, 0.1, 21, 0.1, 21, 0, 0, 0, 0, 0)
+mode = 2
+path_node = NodePath("../../Path3D")
+path_interval_type = 0
+path_interval = 10.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = true
+material = SubResource("StandardMaterial3D_aqs1d")

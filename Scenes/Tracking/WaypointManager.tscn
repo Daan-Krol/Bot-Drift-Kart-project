@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dnvw278y6rftf"]
+
+[node name="WaypointManager" type="Node3D"]

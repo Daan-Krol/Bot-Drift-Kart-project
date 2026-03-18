@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cijkvicxgtdlt"]
+
+[ext_resource type="Texture2D" uid="uid://cmv7k4i2xpikx" path="res://Assets/Sprites/FinishSprite1.png" id="1_x688l"]
+[ext_resource type="Script" uid="uid://cunoygyncq27j" path="res://Scenes/Tracking/Finishline.gd" id="2_w37v4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iljjc"]
+size = Vector3(49.2419, 14.3579, 2.87396)
+
+[node name="Finishline" type="Area3D"]
+transform = Transform3D(0.814075, 0, 0.58076, 0, 1, 0, -0.58076, 0, 0.814075, -3.8603, 6.29188, -28.4332)
+script = ExtResource("2_w37v4")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_x688l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_iljjc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

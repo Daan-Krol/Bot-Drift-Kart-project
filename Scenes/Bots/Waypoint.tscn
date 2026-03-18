@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://2a7oas7x57wo"]
+
+[ext_resource type="Script" uid="uid://dbab8ssfe6src" path="res://Scenes/Tracking/Waypoint.gd" id="1_rxwyk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_psgih"]
+size = Vector3(32.797, 15.638, 3.153)
+
+[node name="Waypoint" type="Area3D" groups=["Waypoint"]]
+script = ExtResource("1_rxwyk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_psgih")
+
+[node name="Delay" type="Timer" parent="."]
+wait_time = 0.02
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]

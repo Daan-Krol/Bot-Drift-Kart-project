@@ -1,0 +1,519 @@
+[gd_scene load_steps=32 format=3 uid="uid://cm3fqw6lkvvsn"]
+
+[ext_resource type="Texture2D" uid="uid://di64hnfl6i0d7" path="res://Assets/Sky/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_keat8"]
+[ext_resource type="PackedScene" uid="uid://2a7oas7x57wo" path="res://Scenes/Bots/Waypoint.tscn" id="4_4wj36"]
+[ext_resource type="Texture2D" uid="uid://dllms5asb10f0" path="res://Assets/Textures/HQ Textures/tile135.png" id="5_uoi1t"]
+[ext_resource type="PackedScene" uid="uid://crp5o4347qrle" path="res://Scenes/Car/Car.tscn" id="6_w17id"]
+[ext_resource type="PackedScene" uid="uid://cijkvicxgtdlt" path="res://Scenes/Tracking/Finishline.tscn" id="7_32ici"]
+[ext_resource type="Texture2D" uid="uid://boht38d3jtm62" path="res://Assets/Textures/HQ Textures/tile06.png" id="8_4rj82"]
+[ext_resource type="PackedScene" uid="uid://dv2bqaprdmtdo" path="res://Scenes/Props/AstroidPlatform.tscn" id="8_gge4k"]
+[ext_resource type="Script" uid="uid://bbryx0ja3na7j" path="res://Scenes/Tracking/RaceManager.gd" id="8_m2633"]
+[ext_resource type="Texture2D" uid="uid://cka8lw3l71drr" path="res://Assets/Textures/HQ Textures/tile05.png" id="9_w1m1o"]
+[ext_resource type="PackedScene" uid="uid://bmwufarb2a7jp" path="res://Scenes/Props/SmallRamp.tscn" id="10_ag2yg"]
+[ext_resource type="PackedScene" uid="uid://cvv45hxcfwfpn" path="res://Scenes/Bots/BotCar.tscn" id="10_fg4wx"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qg0vt"]
+panorama = ExtResource("1_keat8")
+
+[sub_resource type="Sky" id="Sky_ul7op"]
+sky_material = SubResource("PanoramaSkyMaterial_qg0vt")
+
+[sub_resource type="Environment" id="Environment_f1r46"]
+background_mode = 2
+background_energy_multiplier = 0.9
+sky = SubResource("Sky_ul7op")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.15
+glow_enabled = true
+fog_light_energy = 0.0
+fog_density = 0.005
+fog_sky_affect = 0.683
+fog_height_density = 0.0678
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dabx8"]
+albedo_texture = ExtResource("5_uoi1t")
+metallic = 1.0
+uv1_scale = Vector3(-0.5, -0.5, -2.24)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1nig"]
+shading_mode = 0
+albedo_color = Color(0.294118, 0.294118, 0.294118, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_2tvun"]
+material = SubResource("StandardMaterial3D_u1nig")
+size = Vector2(21.05, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqhiw"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.45098)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y3yh"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_okccg"]
+
+[sub_resource type="Image" id="Image_4rj82"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 14, 0, 0, 0, 43, 0, 0, 0, 63, 0, 0, 0, 72, 0, 0, 0, 72, 0, 0, 0, 63, 0, 0, 0, 43, 0, 0, 0, 13, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 3, 0, 0, 0, 45, 64, 64, 64, 91, 201, 201, 201, 169, 239, 239, 239, 223, 251, 251, 251, 248, 251, 251, 251, 248, 239, 239, 239, 223, 199, 199, 199, 169, 61, 61, 61, 91, 0, 0, 0, 44, 0, 0, 0, 3, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 3, 0, 0, 0, 57, 162, 162, 162, 137, 251, 251, 251, 248, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 251, 251, 251, 247, 159, 159, 159, 135, 0, 0, 0, 56, 0, 0, 0, 3, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 45, 162, 162, 162, 137, 255, 255, 255, 255, 255, 255, 255, 255, 255, 215, 215, 255, 255, 142, 142, 255, 255, 110, 110, 255, 255, 110, 110, 255, 255, 142, 142, 255, 255, 216, 216, 255, 255, 255, 255, 255, 255, 255, 255, 255, 159, 159, 159, 135, 0, 0, 0, 44, 255, 255, 255, 0, 0, 0, 0, 14, 64, 64, 64, 91, 251, 251, 251, 248, 255, 255, 255, 255, 255, 176, 176, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 178, 178, 255, 255, 255, 255, 255, 251, 251, 251, 246, 59, 59, 59, 90, 0, 0, 0, 13, 0, 0, 0, 43, 201, 201, 201, 169, 255, 255, 255, 255, 255, 215, 215, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 96, 96, 255, 255, 217, 217, 255, 255, 255, 255, 255, 199, 199, 199, 167, 0, 0, 0, 42, 0, 0, 0, 63, 239, 239, 239, 223, 255, 255, 255, 255, 255, 142, 142, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 143, 143, 255, 255, 255, 255, 255, 238, 238, 238, 222, 0, 0, 0, 63, 0, 0, 0, 72, 251, 251, 251, 248, 255, 255, 255, 255, 255, 110, 110, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 110, 110, 255, 255, 255, 255, 255, 251, 251, 251, 247, 0, 0, 0, 72, 0, 0, 0, 72, 251, 251, 251, 248, 255, 255, 255, 255, 255, 110, 110, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 111, 111, 255, 255, 255, 255, 255, 251, 251, 251, 246, 0, 0, 0, 72, 0, 0, 0, 63, 239, 239, 239, 223, 255, 255, 255, 255, 255, 142, 142, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 144, 144, 255, 255, 255, 255, 255, 238, 238, 238, 221, 0, 0, 0, 63, 0, 0, 0, 43, 199, 199, 199, 169, 255, 255, 255, 255, 255, 216, 216, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 96, 96, 255, 255, 217, 217, 255, 255, 255, 255, 255, 198, 198, 198, 166, 0, 0, 0, 42, 0, 0, 0, 13, 61, 61, 61, 91, 251, 251, 251, 247, 255, 255, 255, 255, 255, 178, 178, 255, 255, 96, 96, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 96, 96, 255, 255, 179, 179, 255, 255, 255, 255, 255, 250, 250, 250, 246, 57, 57, 57, 89, 0, 0, 0, 13, 255, 255, 255, 0, 0, 0, 0, 44, 159, 159, 159, 135, 255, 255, 255, 255, 255, 255, 255, 255, 255, 217, 217, 255, 255, 143, 143, 255, 255, 110, 110, 255, 255, 111, 111, 255, 255, 144, 144, 255, 255, 217, 217, 255, 255, 255, 255, 255, 255, 255, 255, 255, 157, 157, 157, 132, 0, 0, 0, 43, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 3, 0, 0, 0, 56, 159, 159, 159, 135, 251, 251, 251, 246, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 250, 250, 250, 246, 157, 157, 157, 132, 0, 0, 0, 55, 0, 0, 0, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 3, 0, 0, 0, 44, 59, 59, 59, 90, 199, 199, 199, 167, 238, 238, 238, 222, 251, 251, 251, 247, 251, 251, 251, 246, 238, 238, 238, 221, 198, 198, 198, 166, 57, 57, 57, 89, 0, 0, 0, 43, 0, 0, 0, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 13, 0, 0, 0, 42, 0, 0, 0, 63, 0, 0, 0, 72, 0, 0, 0, 72, 0, 0, 0, 63, 0, 0, 0, 42, 0, 0, 0, 13, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_1qwpt"]
+image = SubResource("Image_4rj82")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jukpn"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("ImageTexture_1qwpt")
+use_point_size = true
+point_size = 16.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_umwt0"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 21, 0.10001, 1e-05),
+"format": 34359738369,
+"material": SubResource("StandardMaterial3D_jukpn"),
+"primitive": 0,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 205, 204, 204, 61, 0, 0, 0, 0, 0, 0, 168, 65, 205, 204, 204, 61, 0, 0, 0, 0, 0, 0, 168, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}]
+
+[sub_resource type="Curve3D" id="Curve3D_x4x76"]
+_data = {
+"points": PackedVector3Array(129, 0, 43, -129, 0, -43, -23.8936, -0.16031, 162, 45, 0, 51, -45, 0, -51, -223, 0, 179, 70, 0, 97, -70, 0, -97, -200, 0, -10, -32, 0, 65, 32, 0, -65, -223, 0, -309, -59, 0, -105, 59, 0, 105, -65, 0, -337, -50, 0, -62, 50, 0, 62, 102.512, 0, -287.432, 39, 0, -75, -39, 0, 75, 56, 0, 4, -41.3959, 0, -92.5659, 41.3959, 0, 92.5659, 259.025, 0, 113.398, 39.7599, 0, 15.0653, -39.7599, 0, -15.0653, 117.733, 0, 207.103),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ag5ns"]
+load_path = "res://.godot/imported/tile05.png-8d078171cdc4019cde684fa984ab2066.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88odm"]
+albedo_texture = SubResource("CompressedTexture2D_ag5ns")
+metallic_specular = 0.0
+uv1_scale = Vector3(-0.5, -0.5, -0.5)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+texture_filter = 2
+grow_amount = 2.358
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1s7ra"]
+shading_mode = 0
+albedo_texture = ExtResource("8_4rj82")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74ue4"]
+shading_mode = 0
+albedo_texture = ExtResource("9_w1m1o")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_votve"]
+material = SubResource("StandardMaterial3D_74ue4")
+size = Vector2(500, 600)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rj82"]
+shading_mode = 0
+albedo_texture = ExtResource("8_4rj82")
+uv1_scale = Vector3(-0.075, -0.075, -0.075)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+texture_filter = 2
+
+[node name="SandTrack" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.960716, -0.240108, 0.139186, 6.56915e-09, 0.501511, 0.865151, -0.277533, -0.831165, 0.481809, 59.1798, 0, -159.006)
+shadow_enabled = true
+directional_shadow_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f1r46")
+
+[node name="WaypointManager" type="Node3D" parent="."]
+
+[node name="Waypoint0" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.315649, 0, 0.948877, 0, 1, 0, -0.948877, 0, 0.315649, 86.2245, 4.94202, 52.5759)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint1" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.482152, 0, 0.876088, 0, 1, 0, -0.876088, 0, 0.482152, 57.7875, 5.57702, 41.3429)
+DriftLevel = 1
+Dir = -1
+
+[node name="Waypoint2" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.952114, 0, -0.305745, 0, 1, 0, 0.305745, 0, 0.952114, 49.9857, 5.57703, -1.65323)
+Dir = -1
+
+[node name="Waypoint15" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.952114, 0, -0.305745, 0, 1, 0, 0.305745, 0, 0.952114, 67.5152, 5.57703, -32.3381)
+Dir = -1
+
+[node name="Waypoint16" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.952114, 0, -0.305745, 0, 1, 0, 0.305745, 0, 0.952114, 92.5152, 5.57703, -98.3381)
+Dir = -1
+
+[node name="Waypoint3" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.952114, 0, -0.305745, 0, 1, 0, 0.305745, 0, 0.952114, 107.986, 5.57703, -156.653)
+Dir = -1
+
+[node name="Waypoint23" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.994801, 0, 0.101838, 0, 1, 0, -0.101838, 0, 0.994801, 116.264, 5.57703, -230.253)
+Dir = -1
+
+[node name="Waypoint4" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.991757, 0, 0.128138, 0, 1, 0, -0.128138, 0, 0.991757, 111.889, 5.57703, -249.639)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint5" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.686225, 0, 0.72739, 0, 1, 0, -0.72739, 0, 0.686225, 89.2921, 5.57703, -288.087)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint6" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.00120425, 0, 1, 0, 1, 0, -1, 0, 0.00120425, 57.7092, 5.57703, -297.694)
+Dir = -1
+
+[node name="Waypoint7" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.00120425, 0, 1, 0, 1, 0, -1, 0, 0.00120425, -1.74879, 5.57702, -284.174)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint8" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.413105, 0, 0.910684, 0, 1, 0, -0.910684, 0, 0.413105, -31.152, 5.57703, -290.099)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint9" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.752415, 0, 0.65869, 0, 1, 0, -0.65869, 0, 0.752415, -58.6107, 5.57703, -314.705)
+Dir = -1
+
+[node name="Waypoint10" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.752415, 0, 0.65869, 0, 1, 0, -0.65869, 0, 0.752415, -97.2433, 5.57702, -367.019)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint11" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.256526, 0, 0.966538, 0, 1, 0, -0.966538, 0, 0.256526, -125.088, 5.57702, -384.115)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint12" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.282475, 0, 0.959275, 0, 1, 0, -0.959275, 0, -0.282475, -147.576, 5.57702, -382.358)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint13" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.508576, 0, 0.861017, 0, 1, 0, -0.861017, 0, -0.508576, -169.435, 5.57702, -370.882)
+Dir = -1
+
+[node name="Waypoint14" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.744871, 0, 0.667209, 0, 1, 0, -0.667209, 0, -0.744871, -203.341, 5.57702, -328.685)
+Dir = -1
+
+[node name="Waypoint17" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.862779, 0, 0.505582, 0, 1, 0, -0.505582, 0, -0.862779, -220.589, 5.57702, -294.276)
+Dir = -1
+
+[node name="Waypoint18" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.972905, 0, 0.231205, 0, 1, 0, -0.231205, 0, -0.972905, -236.305, 5.57702, -238.635)
+Dir = -1
+
+[node name="Waypoint19" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.99722, 0, 0.0745089, 0, 1, 0, -0.0745089, 0, -0.99722, -241.053, 5.57703, -192.417)
+Dir = -1
+
+[node name="Waypoint20" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.980727, 0, -0.195381, 0, 1, 0, 0.195381, 0, -0.980727, -232.687, 5.57703, -100.256)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint21" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.897482, 0, -0.441052, 0, 1, 0, 0.441052, 0, -0.897482, -211.472, 5.57703, -44.6623)
+Dir = -1
+
+[node name="Waypoint22" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.897482, 0, -0.441052, 0, 1, 0, 0.441052, 0, -0.897482, -189.339, 5.57703, -8.05252)
+Dir = -1
+
+[node name="Waypoint24" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.897482, 0, -0.441052, 0, 1, 0, 0.441052, 0, -0.897482, -180.574, 5.57703, 7.74275)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint25" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.999991, 0, 0.00411907, 0, 1, 0, -0.00411907, 0, -0.999991, -172.19, 5.57703, 42.4745)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint26" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.973487, 0, 0.228742, 0, 1, 0, -0.228742, 0, -0.973487, -174.754, 5.57703, 67.5287)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint27" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.889033, 0, 0.457843, 0, 1, 0, -0.457843, 0, -0.889033, -182.702, 5.57703, 84.6122)
+Dir = -1
+
+[node name="Waypoint28" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.834204, 0, 0.551457, 0, 1, 0, -0.551457, 0, -0.834204, -210.98, 5.57703, 127.121)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint29" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.911913, 0, 0.410385, 0, 1, 0, -0.410385, 0, -0.911913, -221.366, 5.57703, 144.285)
+DriftLevel = 1
+Dir = -1
+
+[node name="Waypoint30" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.915775, 0, -0.401692, 0, 1, 0, 0.401692, 0, -0.915775, -221.466, 5.57703, 167.006)
+DriftLevel = 1
+Dir = -1
+
+[node name="Waypoint31" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.126892, 0, -0.991917, 0, 1, 0, 0.991917, 0, -0.126892, -200.66, 5.57703, 184.486)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint32" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.426758, 0, -0.904366, 0, 1, 0, 0.904366, 0, 0.426758, -178.995, 5.57703, 179.223)
+Dir = -1
+
+[node name="Waypoint33" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.426758, 0, -0.904366, 0, 1, 0, 0.904366, 0, 0.426758, -136.877, 5.57703, 156.006)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint35" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.171259, 0, -0.985226, 0, 1, 0, 0.985226, 0, -0.171259, -64.7591, 5.57703, 144.358)
+Dir = -1
+
+[node name="Waypoint36" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.25391, 0, -0.967228, 0, 1, 0, 0.967228, 0, -0.25391, -34.5712, 5.57703, 147.501)
+Dir = -1
+
+[node name="AstroidPlatform10" parent="WaypointManager" instance=ExtResource("8_gge4k")]
+transform = Transform3D(0.955278, 0, -0.295708, 0, 1, 0, 0.295708, 0, 0.955278, -8.09954, 1.8046, 161.098)
+Delay = 2
+LTR = true
+
+[node name="AstroidPlatform6" parent="WaypointManager" instance=ExtResource("8_gge4k")]
+transform = Transform3D(0.955278, 0, -0.295708, 0, 1, 0, 0.295708, 0, 0.955278, 21.0705, 1.8046, 165.069)
+Delay = 2
+LTR = true
+
+[node name="AstroidPlatform7" parent="WaypointManager" instance=ExtResource("8_gge4k")]
+transform = Transform3D(0.955278, 0, -0.295708, 0, 1, 0, 0.295708, 0, 0.955278, 49.6077, 1.8046, 174.361)
+Delay = 4
+LTR = true
+
+[node name="AstroidPlatform8" parent="WaypointManager" instance=ExtResource("8_gge4k")]
+transform = Transform3D(0.955278, 0, -0.295708, 0, 1, 0, 0.295708, 0, 0.955278, 77.7762, 1.8046, 183.209)
+Delay = 2
+LTR = true
+
+[node name="AstroidPlatform9" parent="WaypointManager" instance=ExtResource("8_gge4k")]
+transform = Transform3D(0.955278, 0, -0.295708, 0, 1, 0, 0.295708, 0, 0.955278, 105.871, 1.8046, 192.796)
+LTR = true
+
+[node name="Waypoint34" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.171259, 0, -0.985226, 0, 1, 0, 0.985226, 0, -0.171259, 132.265, 5.57703, 197.889)
+Dir = -1
+
+[node name="Waypoint37" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(-0.0300851, 0, -0.999547, 0, 1, 0, 0.999547, 0, -0.0300851, 152.587, 5.57703, 203.094)
+Dir = -1
+
+[node name="Waypoint38" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.24038, 0, -0.970679, 0, 1, 0, 0.970679, 0, 0.24038, 199.674, 5.57703, 199.624)
+Dir = -1
+
+[node name="Waypoint39" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.491207, 0, -0.871043, 0, 1, 0, 0.871043, 0, 0.491207, 233.571, 5.57704, 186.215)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint40" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.934391, 0, -0.356249, 0, 1, 0, 0.356249, 0, 0.934391, 257.805, 5.57704, 156.956)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint41" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.799968, 0, 0.600043, 0, 1, 0, -0.600043, 0, 0.799968, 248.779, 5.57704, 109.368)
+DriftLevel = 3
+Dir = -1
+
+[node name="Waypoint42" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.526734, 0, 0.85003, 0, 1, 0, -0.85003, 0, 0.526734, 216.018, 5.57704, 80.6364)
+DriftLevel = 2
+Dir = -1
+
+[node name="Waypoint43" parent="WaypointManager" instance=ExtResource("4_4wj36")]
+transform = Transform3D(0.21315, 0, 0.977019, 0, 1, 0, -0.977019, 0, 0.21315, 197.774, 5.57704, 74.099)
+Dir = -1
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 6.209, 0, -1, -2.71404e-07, 0, 8.822, 0)
+visible = false
+use_collision = true
+polygon = PackedVector2Array(-76.431, 86.6583, -95.43, 83.0436, -112.014, 76.4557, -130.399, 59.0852, -141.786, 38.6906, -141.254, 27.2327, -135.676, 15.1034, -114.937, 3.89747, -153.91, 20.073, -120.063, 81.525)
+material = SubResource("StandardMaterial3D_dabx8")
+
+[node name="Car" parent="." instance=ExtResource("6_w17id")]
+transform = Transform3D(0.197385, -8.57014e-09, 0.980327, 7.65874e-09, 1, 7.20008e-09, -0.980327, 6.08688e-09, 0.197385, 173.486, 3.31019, 67.1142)
+Name = "Player (You)"
+
+[node name="Finishline" parent="." instance=ExtResource("7_32ici")]
+transform = Transform3D(0.17021, 0, 0.985408, 0, 1, 0, -0.985408, 0, 0.17021, 133.761, 6.29188, 60.6214)
+visible = false
+
+[node name="Racemanager" type="Node3D" parent="."]
+script = ExtResource("8_m2633")
+
+[node name="MiniMap" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MiniMap"]
+transform = Transform3D(0.791256, -0.611486, -2.67289e-08, 0, -4.37114e-08, 1, -0.611486, -0.791256, -3.45869e-08, -5.88201, 12, -27.6234)
+visible = false
+layers = 524288
+mesh = SubResource("QuadMesh_2tvun")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="MiniMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+visible = false
+layers = 524288
+use_collision = true
+collision_layer = 3
+polygon = PackedVector2Array(0, 0.1, 21, 0.1, 21, 0, 0, 0, 0, 0)
+mode = 2
+path_node = NodePath("../../CSGCombiner3D/Path3D")
+path_interval_type = 0
+path_interval = 10.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = true
+material = SubResource("StandardMaterial3D_oqhiw")
+
+[node name="23938" type="MeshInstance3D" parent="MiniMap/CSGPolygon3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_6y3yh")
+mesh = SubResource("ImmediateMesh_okccg")
+
+[node name="13166" type="MeshInstance3D" parent="MiniMap/CSGPolygon3D2/23938"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_umwt0")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="Path3D" type="Path3D" parent="CSGCombiner3D"]
+curve = SubResource("Curve3D_x4x76")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D/Path3D"]
+use_collision = true
+collision_layer = 3
+polygon = PackedVector2Array(0, 2, 16.5, 2, 16.5, 0, 0, 0, 0, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 10.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_88odm")
+
+[node name="Path3D2" type="Path3D" parent="CSGCombiner3D"]
+curve = SubResource("Curve3D_x4x76")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D/Path3D2"]
+use_collision = true
+polygon = PackedVector2Array(-2, 2.75, 0, 2, 0, 0.893, 16.5, 0.893, 16.5, 1.967, 19, 2.75, 25.662, 2.75, 35, -50, -12, 0, -11.73, 2.75)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 10.0
+path_simplify_angle = 0.5
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = SubResource("StandardMaterial3D_1s7ra")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.951905, 0, -0.306393, 0, 1, 0, 0.306393, 0, 0.951905, 47.5678, -121.173, 182.786)
+visible = false
+size = Vector3(155.945, 81.5058, 53.2607)
+material = SubResource("StandardMaterial3D_1s7ra")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.951659, -0.307157, -1.34263e-08, 0, -4.37114e-08, 1, -0.307157, 0.951659, 4.15983e-08, -195.655, 17.4323, 154.655)
+polygon = PackedVector2Array(-90.8304, -55.5228, -89.2805, -67.234, -77.7797, -69.3863, -65.866, -68.1385, -57.4663, -70.9945, -45.3389, -78.2884, -23.4547, -97.3719, -12.5797, -100.448, -7.06905, -97.4847, -7.09818, -65.9594, 2.8203, -36.5419, 6.54512, -17.7516, 11.2885, -2.11707, 9.38655, 7.88828, 3.16292, 13.7227, -4.98163, 14.4431, -15.4119, 5.40318, -28.3639, -12.9242, -45.3238, -26.6944, -63.2775, -39.9557, -79.3898, -48.6406)
+depth = 70.0
+material = SubResource("StandardMaterial3D_74ue4")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.951659, -0.307157, -1.34263e-08, 0, -4.37114e-08, 1, -0.307157, 0.951659, 4.15983e-08, -195.655, 94.3088, 154.655)
+visible = false
+cast_shadow = 0
+polygon = PackedVector2Array(-148.937, -522.142, -225.523, -646.67, -128.052, -574.703, -44.6375, -535.527, 62.3163, -579.913, 177.118, -543.839, 238.67, -430.854, 208.464, -288.674, 144.378, -141.746, 67.5498, -93.5183, 97.1087, 51.7788, 22.4016, 90.3986, -128.869, 50.3962, -363.465, 7.02254, -487.286, -104.001, -489.907, -193.064, -473.735, -229.503, -485.248, -381.675, -406.827, -204.477, -429.654, -185.38, -445.324, -158.091, -448.607, -131.215, -438.732, -101.072, -408.954, -71.8572, -373.948, -51.2469, -323.519, -37.4211, -312.294, -35.7584, -305.852, -25.3476, -249.336, -22.7897, -176.482, -23.7802, -164.796, -35.6915, -139.696, -32.9812, -104.387, -26.9759, -76.6541, -11.1635, -51.9579, 11.0202, -34.206, 31.9428, -13.4457, 43.5443, 12.6574, 43.1476, 35.083, 28.3314, 44.7518, 5.96706, 40.3603, -21.4254, 26.7067, -61.1192, 22.2308, -97.3607, 35.9531, -127.729, 72.5141, -160.527, 118.528, -207.428, 157.501, -281.105, 176.372, -359.311, 177.685, -422.6, 170.489, -465.6, 146.543, -517.438, 123.908, -539.937, 94.9143, -548.805, 57.67, -541.222, 35.9748, -527.15, 6.41696, -502.383, -21.6355, -489.873, -46.7218, -491.109, -78.4775, -511.16, -107.828, -526.514, -131.884, -527.907)
+depth = 156.75
+material = SubResource("StandardMaterial3D_74ue4")
+
+[node name="SmallRamp" parent="." instance=ExtResource("10_ag2yg")]
+transform = Transform3D(-0.955278, 0, 0.384125, 0, 1, 0, -0.295708, 0, -1.24091, -22.3329, 2.08064, 153.801)
+
+[node name="BotCar" parent="." instance=ExtResource("10_fg4wx")]
+transform = Transform3D(0.153382, 0, 0.988167, 0, 1, 0, -0.988167, 0, 0.153382, 146.566, 3.49535, 66.7588)
+Name = "Bot"
+
+[node name="BotCar2" parent="." instance=ExtResource("10_fg4wx")]
+transform = Transform3D(0.153382, 0, 0.988167, 0, 1, 0, -0.988167, 0, 0.153382, 152.566, 3.49535, 63.7588)
+Name = "Bot"
+
+[node name="BotCar3" parent="." instance=ExtResource("10_fg4wx")]
+transform = Transform3D(0.153382, 0, 0.988167, 0, 1, 0, -0.988167, 0, 0.153382, 157.566, 3.49535, 68.7588)
+Name = "Bot"
+
+[node name="BotCar4" parent="." instance=ExtResource("10_fg4wx")]
+transform = Transform3D(0.153382, 0, 0.988167, 0, 1, 0, -0.988167, 0, 0.153382, 163.566, 3.49535, 65.7588)
+Name = "Bot"
+
+[node name="BotCar5" parent="." instance=ExtResource("10_fg4wx")]
+transform = Transform3D(0.153382, 0, 0.988167, 0, 1, 0, -0.988167, 0, 0.153382, 168.566, 3.49535, 70.7588)
+Name = "Bot"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.49388, -51.5348, -94.3494)
+visible = false
+mesh = SubResource("PlaneMesh_votve")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rj82")

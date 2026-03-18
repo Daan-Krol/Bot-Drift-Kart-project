@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmwufarb2a7jp"]
+
+[ext_resource type="Texture2D" uid="uid://d0irdx4k8arge" path="res://Assets/Textures/HQ Textures/rustmaskwall.png" id="1_jdsjl"]
+[ext_resource type="Script" uid="uid://tjxdeshlqqxc" path="res://Scenes/Props/SmallRamp.gd" id="1_x1auj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fb3mj"]
+albedo_texture = ExtResource("1_jdsjl")
+metallic = 1.0
+uv1_scale = Vector3(-0.5, -0.5, -0.5)
+uv1_offset = Vector3(0.25, 0, 0)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 40.7859
+
+[sub_resource type="PrismMesh" id="PrismMesh_vvq1q"]
+material = SubResource("StandardMaterial3D_fb3mj")
+left_to_right = 0.0
+size = Vector3(3.5, 1, 16.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yr7h3"]
+points = PackedVector3Array(1.25, -0.5, 8.25, -1.25, 0.5, 8.25, -1.25, -0.5, 8.25, 1.25, -0.5, -8.25, -1.25, 0.5, -8.25, -1.25, -0.5, -8.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2iuga"]
+size = Vector3(2, 1.2, 16.5)
+
+[node name="SmallRamp" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("1_x1auj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.873662, 0, 0)
+mesh = SubResource("PrismMesh_vvq1q")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36818, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_yr7h3")
+
+[node name="Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393114, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36504, 0.1, 0)
+shape = SubResource("BoxShape3D_2iuga")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[node name="TimerBot" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerBot" to="." method="_on_timer_bot_timeout"]
